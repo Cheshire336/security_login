@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Evaluation Requests</title>
+</head>
+<body>
+    <h1>Evaluation Requests</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Description</th>
+                <th>Contact Method</th>
+                <th>Photo</th>
+                <th>Submitted At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for evaluation in evaluations %}
+            <tr>
+                <td>{{ evaluation.user.username }}</td>
+                <td>{{ evaluation.description }}</td>
+                <td>{{ evaluation.contact_method }}</td>
+                <td>
+                    {% if evaluation.photo %}
+                    <a href="{{ evaluation.photo.url }}" target="_blank">View Photo</a>
+                    {% else %}
+                    No Photo
+                    {% endif %}
+                </td>
+                <td>{{ evaluation.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>
+        <a href="/admin/">
+            <button>Go to Admin Panel</button>
+        </a>
+    </p>
+</body>
+</html>
